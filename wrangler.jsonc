@@ -2,7 +2,7 @@
   // Cloudflare Workers static-assets config for the F3 Northlake site.
   // Deploy with: npx wrangler deploy
   "name": "f3northlake-web",
-  "account_id": "c3bda9bab13220a927583fa54fd11a61",
+  "account_id": "af4948688bbb09cdf8dcd500753a1a75",
   "compatibility_date": "2026-09-02",
   "assets": {
     "directory": "./public",
