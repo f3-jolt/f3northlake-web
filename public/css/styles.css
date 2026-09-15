@@ -277,6 +277,22 @@ a { color: var(--red); }
   padding: 78px 24px;
 }
 
+/* photo banners for interior pages (launch-day PAX photos) */
+.page-hero.hero-fng {
+  background: linear-gradient(rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.58)),
+    url("/img/banners/fng.jpg") center 68% / cover no-repeat #000;
+}
+
+.page-hero.hero-ao {
+  background: linear-gradient(rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.58)),
+    url("/img/banners/workouts.jpg") center 40% / cover no-repeat #000;
+}
+
+.page-hero.hero-slt {
+  background: linear-gradient(rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.58)),
+    url("/img/banners/leadership.jpg") center 45% / cover no-repeat #000;
+}
+
 .page-hero h1 {
   font-family: var(--font-cond);
   text-transform: uppercase;
