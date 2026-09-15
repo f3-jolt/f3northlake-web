@@ -288,6 +288,11 @@ a { color: var(--red); }
     url("/img/banners/workouts.jpg") center 40% / cover no-repeat #000;
 }
 
+.page-hero.hero-resources {
+  background: linear-gradient(rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.62)),
+    url("/img/principles.jpg") center 40% / cover no-repeat #000;
+}
+
 .page-hero.hero-slt {
   background: linear-gradient(rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.58)),
     url("/img/banners/leadership.jpg") center 45% / cover no-repeat #000;
