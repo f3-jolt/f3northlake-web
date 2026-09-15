@@ -21,20 +21,49 @@ document.addEventListener("DOMContentLoaded", function () {
     }, { once: true });
   });
 
-  // AO schedule: filter cards by workout type
-  var filterBtns = document.querySelectorAll(".ao-filter");
-  if (filterBtns.length) {
+  // AO schedule: filter cards by workout type and day of week (combined)
+  var typeBtns = document.querySelectorAll(".ao-filter[data-filter]");
+  var dayBtns = document.querySelectorAll(".ao-filter[data-day]");
+  if (typeBtns.length) {
     var aoCards = document.querySelectorAll(".ao-card");
-    filterBtns.forEach(function (btn) {
+    var filterState = { type: "all", day: "all" };
+
+    function cardTypes(card) {
+      return Array.prototype.map.call(card.querySelectorAll(".ao-type"), function (t) {
+        return t.textContent.trim().toLowerCase();
+      });
+    }
+
+    function cardDays(card) {
+      var days = [];
+      card.querySelectorAll(".ao-meta b").forEach(function (b) {
+        var m = b.textContent.toLowerCase().match(/\b(mon|tue|wed|thu|fri|sat|sun)\b/g);
+        if (m) days = days.concat(m);
+      });
+      return days;
+    }
+
+    function applyFilters() {
+      aoCards.forEach(function (card) {
+        var okType = filterState.type === "all" || cardTypes(card).indexOf(filterState.type) !== -1;
+        var okDay = filterState.day === "all" || cardDays(card).indexOf(filterState.day) !== -1;
+        card.style.display = okType && okDay ? "" : "none";
+      });
+    }
+
+    typeBtns.forEach(function (btn) {
       btn.addEventListener("click", function () {
-        filterBtns.forEach(function (b) { b.classList.toggle("active", b === btn); });
-        var f = btn.dataset.filter;
-        aoCards.forEach(function (card) {
-          var types = Array.prototype.map.call(card.querySelectorAll(".ao-type"), function (t) {
-            return t.textContent.trim().toLowerCase();
-          });
-          card.style.display = (f === "all" || types.indexOf(f) !== -1) ? "" : "none";
-        });
+        typeBtns.forEach(function (b) { b.classList.toggle("active", b === btn); });
+        filterState.type = btn.dataset.filter;
+        applyFilters();
+      });
+    });
+
+    dayBtns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        dayBtns.forEach(function (b) { b.classList.toggle("active", b === btn); });
+        filterState.day = btn.dataset.day;
+        applyFilters();
       });
     });
   }

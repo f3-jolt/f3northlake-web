@@ -563,8 +563,10 @@ a { color: var(--red); }
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  margin: -18px 0 44px;
+  margin: -18px 0 12px;
 }
+
+.ao-filters-days { margin: 0 0 44px; }
 
 .ao-filter {
   font-family: var(--font-cond);
