@@ -705,7 +705,8 @@ a { color: var(--red); }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 22%;
+  /* pin to the top so faces never crop out at any screen size */
+  object-position: top;
 }
 
 .slt-role {
