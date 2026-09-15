@@ -694,6 +694,20 @@ a { color: var(--red); }
 
 .slt-card .img-placeholder { min-height: 240px; border: 0; border-bottom: 2px dashed var(--ph-border); margin-bottom: 18px; }
 
+.slt-card .slt-photo {
+  height: 260px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--card-border);
+  margin-bottom: 18px;
+}
+
+.slt-card .slt-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+}
+
 .slt-role {
   font-family: var(--font-cond);
   text-transform: uppercase;
