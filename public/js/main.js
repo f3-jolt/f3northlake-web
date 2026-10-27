@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
   var typeBtns = document.querySelectorAll(".ao-filter[data-filter]");
   var dayBtns = document.querySelectorAll(".ao-filter[data-day]");
   if (typeBtns.length) {
-    var aoCards = document.querySelectorAll(".ao-card");
     var filterState = { type: "all", day: "all" };
 
     function cardTypes(card) {
@@ -44,7 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function applyFilters() {
-      aoCards.forEach(function (card) {
+      // Query live: workouts.js may rebuild the grid from API data.
+      document.querySelectorAll(".ao-card").forEach(function (card) {
         var okType = filterState.type === "all" || cardTypes(card).indexOf(filterState.type) !== -1;
         var okDay = filterState.day === "all" || cardDays(card).indexOf(filterState.day) !== -1;
         card.style.display = okType && okDay ? "" : "none";
@@ -66,6 +66,9 @@ document.addEventListener("DOMContentLoaded", function () {
         applyFilters();
       });
     });
+
+    // Re-apply the active filters after workouts.js swaps in live API data.
+    document.addEventListener("ao:grid-updated", applyFilters);
   }
 
   // Theme toggle: dark | light | system (system = follow OS preference)

@@ -21,7 +21,7 @@ there, not scattered through the pages.
 |---|---|---|
 | `public/img/logo.png` | The region roundel (F3 Northlake shield) | Header brand mark, favicon, intro section |
 | `public/img/f3-logo.png` | The F3 Nation logo (black artwork) | Section icons; always paired with class `invert-dark` so it flips to white in dark mode |
-| `public/img/aos/logos/*.png` | Per-AO logos (transparent PNG) | Overlaid centered on each AO card photo |
+| F3 Nation API `logoUrl` | Per-AO logos (white-on-black square JPG, served by the API) | Overlaid on each AO card's type background with a screen blend |
 
 Rules:
 
@@ -159,8 +159,9 @@ Every page supports a three-way theme toggle in the header:
 - **Hero / banners**: landscape, ≥1600px wide (`img/hero.jpg`,
   `img/banners/*.jpg`). Focal point matters more than resolution — banner crop
   positions are tuned per image in the CSS.
-- **AO photos** (`img/aos/*`): landscape, ~800px+ wide; rendered at 175px tall,
-  object-fit cover, darkened to 35% with the AO logo centered on top.
+- **AO card backgrounds** (`img/types/*.jpg`): one photo per workout type
+  (bootcamp, ruck, run, default); rendered at 175px tall, object-fit cover,
+  darkened to 35% with the API-served AO logo screen-blended on top.
 - **SLT headshots** (`img/slt/*`): roughly square, face centered, ≥400px.
 - Compress everything (JPEG/WebP); this is a static site and images are the
   entire payload.

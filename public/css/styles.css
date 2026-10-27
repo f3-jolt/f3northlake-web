@@ -949,3 +949,105 @@ a { color: var(--red); }
 .theme-toggle button + button { border-left: 1px solid #3a3a3a; }
 .theme-toggle button:hover { color: var(--white); }
 .theme-toggle button.active { background: var(--red); color: var(--white); }
+
+/* ---------- Upcoming workouts (live from the F3 Nation API) ---------- */
+/* Section is hidden until js/workouts.js fills it with instances. */
+.upcoming .section-sub { margin-bottom: 40px; }
+
+.up-days { display: grid; gap: 34px; }
+
+.up-day-head {
+  font-family: var(--font-cond);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  color: var(--strong);
+  margin-bottom: 14px;
+}
+.up-day-head .up-day-rel { color: var(--red); }
+
+.up-list { display: grid; gap: 12px; }
+
+.up-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 22px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-left: 4px solid var(--red);
+  padding: 16px 20px;
+}
+
+.up-time {
+  font-family: var(--font-cond);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--strong);
+  min-width: 128px;
+  white-space: nowrap;
+}
+
+.up-what { flex: 1 1 260px; }
+.up-what h3 {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--head);
+}
+.up-what .up-ao { font-size: 0.88rem; }
+.up-what .up-addr { font-size: 0.88rem; }
+
+.up-flag {
+  display: inline-block;
+  font-family: var(--font-cond);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--white);
+  background: var(--red);
+  border-radius: 2px;
+  padding: 3px 8px;
+  margin-left: 8px;
+  vertical-align: 2px;
+}
+
+.up-row .btn { font-size: 0.8rem; padding: 9px 20px; margin-left: auto; }
+
+@media (max-width: 560px) {
+  .up-row .btn { margin-left: 0; }
+}
+
+/* AO logo from the F3 Nation API overlaid on the type background photo.
+   The artwork is white-on-black, so screen blending drops its black
+   background — same look as the old transparent local logos. */
+.ao-card .ao-img .ao-logo.ao-logo-blend {
+  /* fill the image area and letterbox, so the artwork is never cropped */
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  padding: 6px;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  filter: none;
+}
+
+/* Small AO logo thumbnail on upcoming-workout rows */
+.up-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 4px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Workout-type chips and Q line on upcoming rows */
+.up-what h3 .ao-type { margin-left: 8px; vertical-align: 2px; }
+.up-q { font-size: 0.88rem; margin-top: 2px; }
+.up-q b { color: var(--strong); }
+
+/* Open Q slot on upcoming rows */
+.up-q .up-q-open { color: var(--red); }

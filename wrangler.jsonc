@@ -1,11 +1,23 @@
 {
-  // Cloudflare Workers static-assets config for the F3 Northlake site.
+  // Cloudflare Workers config for the F3 Northlake site.
+  // Static assets live in ./public; src/worker.js handles /api/* routes
+  // that proxy the F3 Nation API (key stored as the F3_API_KEY secret).
   // Deploy with: npx wrangler deploy
   "name": "f3northlake-web",
   "account_id": "af4948688bbb09cdf8dcd500753a1a75",
   "compatibility_date": "2026-09-02",
+  "main": "src/worker.js",
   "assets": {
     "directory": "./public",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    "binding": "ASSETS"
+  },
+  "vars": {
+    // F3 Nation org ID for the Northlake region.
+    "F3_REGION_ID": "40364",
+    // Required Client header on every F3 Nation API request.
+    "F3_API_CLIENT": "https://f3northlake.com",
+    // Region timezone, used to compute "today" for upcoming workouts.
+    "F3_TIMEZONE": "America/Chicago"
   }
 }

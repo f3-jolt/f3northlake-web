@@ -3,9 +3,9 @@
   "configurations": [
     {
       "name": "f3northlake",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8788", "-d", "public"],
-      "port": 8788
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["wrangler", "dev", "--port", "8787"],
+      "port": 8787
     }
   ]
 }
