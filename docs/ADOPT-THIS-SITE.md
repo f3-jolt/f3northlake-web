@@ -107,8 +107,8 @@ in the HTML/CSS needs to change), or rename and update the references:
 | `img/hero.jpg` | Home hero background — wide gloom photo, ≥1600px |
 | `img/principles.jpg` | Banner photo (used by a page-hero variant) |
 | `img/banners/fng.jpg`, `workouts.jpg`, `leadership.jpg` | Interior page banner photos |
-| `img/aos/*.jpg` | One photo per AO (landscape, ~800px+) |
-| `img/aos/logos/*.png` | One transparent-PNG logo per AO |
+| `img/types/*.jpg` | One background photo per workout type (bootcamp, ruck, run, default) |
+| (AO logos) | Served live from the F3 Nation API (`logoUrl` on each AO org) — upload them at admin.f3nation.com, no local files needed |
 | `img/slt/*.jpg` | SLT headshots (square-ish, ≥400px) |
 | `img/news/*` | Keep — national F3 press coverage (CBS, Men's Health, NYT) |
 
@@ -116,28 +116,22 @@ Banner crop positions are tuned per image in `public/css/styles.css` (search
 for `img/banners`) — if faces or subjects sit awkwardly after swapping a
 banner, adjust the `center 40%`-style position values there.
 
-## Step 4 — Your AO schedule (`workouts.html`)
+## Step 4 — Your AO schedule (`workouts.html` + the F3 Nation API)
 
-Each workout location is one self-contained `.ao-card` block. Duplicate,
-delete, and edit these to match your region:
+The schedule is live data: `src/worker.js` proxies the F3 Nation API and
+`js/workouts.js` renders the AO cards, the Upcoming Workouts section, and the
+map center from it. To point it at your region:
 
-```html
-<div class="ao-card">
-  <div class="ao-img">
-    <img src="/img/aos/YOUR-AO.jpg" alt="YOUR AO NAME AO" loading="lazy">
-    <img class="ao-logo" src="/img/aos/logos/YOUR-AO.png" alt="" loading="lazy">
-  </div>
-  <div class="ao-body">
-    <div class="ao-types"><span class="ao-type bootcamp">Bootcamp</span></div>
-    <h3>Your AO Name</h3>
-    <ul class="ao-meta">
-      <li><b>Tue / Thu:</b> 5:30&ndash;6:15 AM</li>
-      <li><b>Where:</b> Street address, City, ST 00000</li>
-    </ul>
-    <a class="btn btn-navy" href="https://maps.app.goo.gl/..." target="_blank" rel="noopener">Map It</a>
-  </div>
-</div>
-```
+1. Set `F3_REGION_ID` (your region org id), `F3_API_CLIENT`, and `F3_TIMEZONE`
+   in `wrangler.jsonc`.
+2. Create a read-only API key at admin.f3nation.com/api-keys and store it with
+   `npx wrangler secret put F3_API_KEY` (and in `.dev.vars` for local dev).
+3. Keep your schedule, AOs, and AO logos current in the F3 Nation admin — the
+   site reflects them automatically.
+
+The hardcoded `.ao-card` blocks inside `.ao-grid` are only the no-API fallback.
+Regenerate them from your live page (copy the rendered grid markup) rather
+than hand-writing them.
 
 Notes on how the pieces work:
 
